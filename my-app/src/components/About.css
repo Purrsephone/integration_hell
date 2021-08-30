@@ -1,0 +1,9 @@
+.about-text {
+    float: left;
+    width: 170%;
+    margin: 1%;
+    text-align:left;
+}
+.about-text p {
+    word-break: keep-all;
+}
