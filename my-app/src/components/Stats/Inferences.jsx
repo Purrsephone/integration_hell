@@ -1,6 +1,6 @@
 import React from "react";
 import "./FormatStats.css";
-import { collapseTable } from "/Users/purrsephone/Desktop/integration_hell/dataaccess/my-app/src/components/CollapseTable";
+import { collapseTable } from "/Users/purrsephone/Desktop/integration_hell/my-app/src/components/CollapseTable";
 import { arrtoStr } from "./Functions";
 
 function inf_analys(
