@@ -32,7 +32,7 @@ function SideBar({ selections = [] }) {
     <Outer>
       <Inner>
         {selections.map((selection, i) => (
-          <Selection key={i}>{selection}</Selection>
+          <Selection key={i}>"{selection}"<input></input></Selection>
         ))}
       </Inner>
     </Outer>
