@@ -24,6 +24,9 @@ function getSafeRanges(dangerous) {
         );
       }
       rs.push(xs);
+      //HOW TO SPLIT UP BY WORDS NOT LETTERS ????
+      //console.log("HERE");
+      //console.log(xs);
     }
 
   // Ends -- basically the same code reversed
@@ -64,7 +67,6 @@ function getSafeRanges(dangerous) {
 }
 
 function highlightRange(range) {
-  console.log(range);
   const newNode = document.createElement('div');
   //#F5B5FC purple
   //#FCB1B1 pink
@@ -94,6 +96,7 @@ function highlightRange(range) {
 function highlightSelection() {
   const userSelection = window.getSelection().getRangeAt(0);
   const safeRanges = getSafeRanges(userSelection);
+  console.log(safeRanges);
   for (let i = 0; i < safeRanges.length; i++) {
     highlightRange(safeRanges[i]);
   }

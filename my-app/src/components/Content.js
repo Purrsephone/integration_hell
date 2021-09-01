@@ -33,7 +33,7 @@ const PurpleButton = styled.div`
   font-size: 14px;
   cursor: pointer;
   border-radius: 12px;
-  width: 90px;
+  width: 108px;
   height: 40px;
   padding: 8px 0;
   background-color: #F5B5FC;
@@ -48,7 +48,7 @@ const PinkButton = styled.div`
   font-size: 14px;
   cursor: pointer;
   border-radius: 12px;
-  width: 90px;
+  width: 108px;
   height: 40px;
   padding: 8px 0;
   background-color: #FCB1B1;
@@ -63,7 +63,7 @@ const YellowButton = styled.div`
   font-size: 14px;
   cursor: pointer;
   border-radius: 12px;
-  width: 90px;
+  width: 108px;
   height: 40px;
   padding: 8px 0;
   background-color: #F0F696;
@@ -78,7 +78,7 @@ const GreenButton = styled.div`
   font-size: 14px;
   cursor: pointer;
   border-radius: 12px;
-  width: 90px;
+  width: 108px;
   height: 40px;
   padding: 8px 0;
   background-color: #96F7D2;
@@ -87,14 +87,56 @@ const GreenButton = styled.div`
 
 function Content({ setSelected }) {
   const onMouseUp = () => {
-    const s = window.getSelection().toString();
+    //source: https://stackoverflow.com/questions/7380190/select-whole-word-with-getselection
+    var sel;
+    if (window.getSelection && (sel = window.getSelection()).modify) {
+        sel = window.getSelection();
+        if (!sel.isCollapsed) {
 
-    if (s === '') {
+            // Detect if selection is backwards
+            var range = document.createRange();
+            range.setStart(sel.anchorNode, sel.anchorOffset);
+            range.setEnd(sel.focusNode, sel.focusOffset);
+            var backwards = range.collapsed;
+            range.detach();
+
+            // modify() works on the focus of the selection
+            var endNode = sel.focusNode, endOffset = sel.focusOffset;
+            sel.collapse(sel.anchorNode, sel.anchorOffset);
+
+            var direction = [];
+            if (backwards) {
+                direction = ['backward', 'forward'];
+            } else {
+                direction = ['forward', 'backward'];
+            }
+
+            sel.modify("move", direction[0], "character");
+            sel.modify("move", direction[1], "word");
+            sel.extend(endNode, endOffset);
+            sel.modify("extend", direction[1], "character");
+            sel.modify("extend", direction[0], "word");
+        }
+    } else if ( (sel = document.selection) && sel.type != "Control") {
+        var textRange = sel.createRange();
+        if (textRange.text) {
+            textRange.expand("word");
+            // Move the end back to not include the word's trailing space(s),
+            // if necessary
+            while (/\s$/.test(textRange.text)) {
+                textRange.moveEnd("character", -1);
+            }
+            textRange.select();
+        }
+    }
+    sel = sel.toString();
+    console.log(typeof(sel));
+    if (sel === '') {
       return;
     }
-    setSelected(s);
-    console.log(s);
+    setSelected(sel);
     highlightSelection();
+
   };
 
   function SetPink()
