@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import "./About.css";
 import Search from "./Search";
 import DisplayInfo from "./DisplayInfo";
-import DisplaySearch from "./DisplaySearch";
-import DisplayFollow from "./DisplayFollow";
 import { SideBar } from './SideBar';
 import { highlightSelection } from '../utils';
 import styled from 'styled-components';
+
+var color = "pink";
+
+function GetCurrColor()
+{
+  return color;
+};
 
 const Outer = styled.div`
   width: 100%;
@@ -20,6 +25,65 @@ const Inner = styled.div`
   width: 100%;
 `;
 
+const PurpleButton = styled.div`
+  border: none;
+  color: black;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 90px;
+  height: 40px;
+  padding: 8px 0;
+  background-color: #F5B5FC;
+  margin: 4px 2px
+`;
+
+const PinkButton = styled.div`
+  border: none;
+  color: black;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 90px;
+  height: 40px;
+  padding: 8px 0;
+  background-color: #FCB1B1;
+  margin: 4px 2px
+`;
+
+const YellowButton = styled.div`
+  border: none;
+  color: black;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 90px;
+  height: 40px;
+  padding: 8px 0;
+  background-color: #F0F696;
+  margin: 4px 2px
+`;
+
+const GreenButton = styled.div`
+  border: none;
+  color: black;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 90px;
+  height: 40px;
+  padding: 8px 0;
+  background-color: #96F7D2;
+  margin: 4px 2px
+`;
 
 function Content({ setSelected }) {
   const onMouseUp = () => {
@@ -33,6 +97,30 @@ function Content({ setSelected }) {
     highlightSelection();
   };
 
+  function SetPink()
+  {
+    color = "pink";
+    return;
+  };
+
+  function SetPurple()
+  {
+    color = "purple";
+    return;
+  };
+
+  function SetGreen(col)
+  {
+    color = "green";
+    return;
+  };
+
+  function SetYellow()
+  {
+    color = "yellow";
+    return;
+  };
+
   const libraryInfo = "Your library file contains a list of all of the songs and albums you have saved to your Spotify library."
   const userDataInfo = "Your user data file contains misc. information about your account, including your email, username, birthdate, gender, and zip code whether or not you’ve linked it to Facebook or your phone number."
   const streamingHistoryInfo = "The streaming history file contains a list of all the songs you have played in the past year in addition to which date and time the song was played, the name of the artist, the name of the song, and how long you listened to the song in ms."
@@ -44,13 +132,24 @@ function Content({ setSelected }) {
   const searchQueriesInfo = "The search queries file contains a history of all the searches you’ve made on spotify in the past 3 months."
 
   return (
-    <Outer onMouseUp={onMouseUp}>
-      <Inner>
+    <Outer>
+      <Inner onMouseUp={onMouseUp}>
       <div className="about">
         <div class="container">
           <div class="row align-items-center my-5">
             <div class="col-lg-5">
+            <p class="about-text">
+            <i>Instructions: Click the colored buttons to change the color of the highlighter.
+            Use your cursor to highlight things you find interesting, confusing, surprising, or creepy.
+            Then answer the prompt in the box that appears to the right.</i>
+            </p>
               <Search />
+              <p class="about-text">
+              <PinkButton onClick={SetPink}>Interesting</PinkButton>
+              <GreenButton onClick={SetGreen}>Confusing</GreenButton>
+              <YellowButton onClick={SetYellow}>Surprising</YellowButton>
+              <PurpleButton onClick={SetPurple}>Creepy</PurpleButton>
+              </p>
               <h1 class="about-text">Your Json Files</h1>
               <p>
                 <div id="about-text">
@@ -61,8 +160,8 @@ function Content({ setSelected }) {
                   <DisplayInfo text={inferencesInfo} header="Inferences"/>
                   <DisplayInfo text={paymentsInfo} header="Payments"/>
                   <DisplayInfo text={identityInfo} header="Identity"/>
-                  <DisplayFollow />
-                  <DisplaySearch />
+                  <DisplayInfo text={followInfo} header="Follow"/>
+                  <DisplayInfo text={searchQueriesInfo} header="Search"/>
                 </div>
               </p>
             </div>
@@ -79,3 +178,4 @@ function Content({ setSelected }) {
 }
 
 export { Content };
+export { GetCurrColor };

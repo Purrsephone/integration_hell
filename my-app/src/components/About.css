@@ -1,9 +1,16 @@
 .about-text {
     float: left;
-    width: 170%;
+    width: 220%;
     margin: 1%;
     text-align:left;
 }
 .about-text p {
     word-break: keep-all;
+}
+
+.about-header {
+    text-align: left;
+    text-indent: 50px;
+    float: left;
+    padding: 5px;
 }

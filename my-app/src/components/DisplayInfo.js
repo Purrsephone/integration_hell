@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./Styles.css";
-import Hightlight_Test from "./Highlighter";
+
 
 function DisplayInfo(props) {
   var message = props.text;

@@ -6,6 +6,7 @@ import {collapseTable} from "./CollapseTable";
 import { displayStats } from "./SummaryStats";
 import "./Upload.css";
 
+
 var changeText = "The sky above the port was the color of television, tuned to a dead channel.";
 var lenText = changeText.length;
 

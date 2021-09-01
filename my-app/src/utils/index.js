@@ -1,3 +1,5 @@
+import {GetCurrColor} from '../components/Content';
+
 // credits: https://stackoverflow.com/a/12823606/9986657
 function getSafeRanges(dangerous) {
   const a = dangerous.commonAncestorContainer;
@@ -62,8 +64,29 @@ function getSafeRanges(dangerous) {
 }
 
 function highlightRange(range) {
+  console.log(range);
   const newNode = document.createElement('div');
-  newNode.setAttribute('style', 'background-color: yellow; display: inline;');
+  //#F5B5FC purple
+  //#FCB1B1 pink
+  //#F0F696 yellow
+  //#96F7D2 green
+  var col = GetCurrColor();
+  if(col == "purple")
+  {
+    newNode.setAttribute('style', 'background-color: #F5B5FC; display: inline;');
+  }
+  if(col == "pink")
+  {
+    newNode.setAttribute('style', 'background-color: #FCB1B1; display: inline;');
+  }
+  if(col == "yellow")
+  {
+    newNode.setAttribute('style', 'background-color: #F0F696; display: inline;');
+  }
+  if(col == "green")
+  {
+    newNode.setAttribute('style', 'background-color: #96F7D2; display: inline;');
+  }
   newNode.setAttribute('class', 'one');
   range.surroundContents(newNode);
 }

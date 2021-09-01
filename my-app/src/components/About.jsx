@@ -21,18 +21,18 @@ function About() {
   const [selections, setSelected] = useState([]);
 
   const onSelect = selection => {
-    setSelected([selection, ...selections]);
+    //setSelected([selection, ...selections]);
+    setSelected([...selections, selection]);
   };
 
   return (
     <Outer>
-      <Inner>
         <Content setSelected={onSelect} />
         <SideBar selections={selections} />
-      </Inner>
     </Outer>
   );
 }
+
 
 export { About };
 
