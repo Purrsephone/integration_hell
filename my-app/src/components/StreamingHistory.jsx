@@ -22,8 +22,9 @@ class StreamingHistory extends React.Component {
         <br />
         <h5 className="upload_header">Upload Your Json File Here</h5>
         <ReactFileReader
-          multipleFiles={false}
-          fileTypes={[".json"]}
+          multipleFiles={true}
+          fileTypes={[".json", ".zip"]}
+          base64={true}
           handleFiles={this.handleFiles}
         >
         <button className="upload_button">Upload</button>
@@ -36,6 +37,8 @@ class StreamingHistory extends React.Component {
   }
 
   handleFiles = files => {
+    console.log(files.fileList);
+    console.log("MEOW");
     var reader = new FileReader();
     reader.onload = e => {
       // Use reader.result
