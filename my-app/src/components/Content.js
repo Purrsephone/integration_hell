@@ -16,12 +16,11 @@ function GetCurrColor()
 const Outer = styled.div`
   width: 100%;
   height: 100%;
-  //border: 1px solid black;
 `;
 
+//this is hard coded, please fix
 const Inner = styled.div`
   box-sizing: border-box;
-  padding: 10px;
   width: 100%;
 `;
 
@@ -175,16 +174,15 @@ function Content({ setSelected }) {
 
   return (
     <Outer>
-      <Inner onMouseUp={onMouseUp}>
       <div className="about">
         <div class="container">
           <div class="row align-items-center my-5">
             <div class="col-lg-5">
-            <p class="about-text">
-            <i>Instructions: Click the colored buttons to change the color of the highlighter.
-            Use your cursor to highlight things you find interesting, confusing, surprising, or creepy.
-            Then answer the prompt in the box that appears to the right.</i>
-            </p>
+              <p class="about-text">
+              <i>Instructions: Click the colored buttons to change the color of the highlighter.
+              Use your cursor to highlight things you find interesting, confusing, surprising, or creepy.
+              Then answer the prompt in the box that appears to the right.</i>
+              </p>
               <Search />
               <p class="about-text">
               <PinkButton onClick={SetPink}>Interesting</PinkButton>
@@ -192,29 +190,36 @@ function Content({ setSelected }) {
               <YellowButton onClick={SetYellow}>Surprising</YellowButton>
               <PurpleButton onClick={SetPurple}>Creepy</PurpleButton>
               </p>
-              <h1 class="about-text">Your Json Files</h1>
-              <p>
-                <div id="about-text">
-                  <DisplayInfo text={libraryInfo} header="Library"/>
-                  <DisplayInfo text={userDataInfo} header="User Data"/>
-                  <DisplayInfo text={streamingHistoryInfo} header="Streaming History"/>
-                  <DisplayInfo text={playlistInfo} header="Playlist"/>
-                  <DisplayInfo text={inferencesInfo} header="Inferences"/>
-                  <DisplayInfo text={paymentsInfo} header="Payments"/>
-                  <DisplayInfo text={identityInfo} header="Identity"/>
-                  <DisplayInfo text={followInfo} header="Follow"/>
-                  <DisplayInfo text={searchQueriesInfo} header="Search"/>
-                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Inner onMouseUp={onMouseUp}>
+      <div className="about">
+        <div class="container">
+          <div class="row align-items-center my-5">
+            <div class="col-lg-5">
+              <p class="about-text">
+                <h1 class="about-text">Your Json Files</h1>
+                <p>
+                  <div id="about-text">
+                    <DisplayInfo text={libraryInfo} header="Library"/>
+                    <DisplayInfo text={userDataInfo} header="User Data"/>
+                    <DisplayInfo text={streamingHistoryInfo} header="Streaming History"/>
+                    <DisplayInfo text={playlistInfo} header="Playlist"/>
+                    <DisplayInfo text={inferencesInfo} header="Inferences"/>
+                    <DisplayInfo text={paymentsInfo} header="Payments"/>
+                    <DisplayInfo text={identityInfo} header="Identity"/>
+                    <DisplayInfo text={followInfo} header="Follow"/>
+                    <DisplayInfo text={searchQueriesInfo} header="Search"/>
+                  </div>
+                </p>
               </p>
             </div>
           </div>
         </div>
-        <br />
-        <br />
-        <br />
       </div>
       </Inner>
-      {/*<div>{selected}</div>*/}
     </Outer>
   );
 }
